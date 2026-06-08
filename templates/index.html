@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Manager</title>
+</head>
+<body>
+
+    <h1>Product Manager</h1>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <h2>Search Products</h2>
+
+    <form action="/search" method="GET">
+        <input type="text" name="q" placeholder="Search by name or category">
+        <button type="submit">Search</button>
+    </form>
+
+    <a href="/">Show all products</a>
+
+
+    <h2>Add Product</h2>
+
+    <form action="/add" method="POST">
+        <input type="text" name="name" placeholder="Product name">
+        <input type="text" name="category" placeholder="Category">
+        <input type="text" name="price" placeholder="Price">
+        <button type="submit">Add Product</button>
+    </form>
+
+    <h2>Products</h2>
+
+    {% if products %}
+        <ul>
+            {% for product in products %}
+                <li>
+                    {{ product.name }} -
+                    {{ product.category }} -
+                    €{{ product.price }}
+
+                    <form action="/delete/{{ product.id }}" method="POST" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No products yet.</p>
+    {% endif %}
+
+</body>
+</html>
