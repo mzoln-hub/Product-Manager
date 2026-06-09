@@ -28,4 +28,4 @@ Features:
 •	SQLite database storage
 
 GitHub Repository URL:
-
+https://github.com/mzoln-hub/Product-Manager
